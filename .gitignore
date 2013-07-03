@@ -1,0 +1,5 @@
+dist/
+druantia.egg-info/
+.coverage
+_html
+_public/
