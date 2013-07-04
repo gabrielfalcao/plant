@@ -7,8 +7,8 @@ It's called plant because you start using an instance of `Node` and
 with search operations you start moving through other nodes that
 represent paths, they can be folders or files, in fact every possible
 path in the disk your software is operating on is a potential "plant"
-node. (But it's also given my personal affection towards plants and
-vegetables).
+node. *(Though it's also given my personal affection towards plants and
+vegetables)*
 
 ## Primer
 
