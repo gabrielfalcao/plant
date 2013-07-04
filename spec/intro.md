@@ -13,8 +13,9 @@ vegetables)*
 ## Primer
 
 Here is a quick introduction, but the
-[full documentation](http://falcao.it/plant) can be found
-[here](http://falcao.it/plant) A `Node` takes a path, if it's
+[full documentation](http://falcao.it/plant) can be found [here](http://falcao.it/plant)
+
+A `Node` takes a path, if it's
 relative, Plant will turn it into absolute before storing it
 internally.
 
