@@ -5,7 +5,7 @@ body, html {
   font-weight: 100;
   color: white;
   background: #0d2e05;
-background:url(http://s.cdpn.io/18885/bg.jpg);
+background:url(../img/bg.jpg);
 }
 a {
   color: white;
@@ -15,7 +15,7 @@ a:hover {
   opacity: .7;
 }
 .container.planta {
-  background-image: url(http://s.cdpn.io/18885/header_1.png);
+  background-image: url(../img/header.png);
   min-height: 600px;
   background-position: top center;
   background-repeat:no-repeat;

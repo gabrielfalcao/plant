@@ -1,7 +1,7 @@
 project:
   name: "Plant"
   version: 0.1.0
-  description: Filesystem for humans
+  description: python file-system <br /> for humans
 
   github_maintainer: gabrielfalcao
   github_maintainer_url: http://github.com/gabrielfalcao
@@ -16,4 +16,4 @@ project:
   logo_inline_css: "display: block"
 
 documentation:
-  index: index.md
+  index: intro.md

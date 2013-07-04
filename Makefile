@@ -23,6 +23,7 @@ docstests: clean
 	@steadymark spec/*.md
 
 docs: docstests
+	@markment -o . -t spec/theme --sitemap-for="http://falcao.it/plant" spec
 	@git co master && \
 		(git br -D gh-pages || printf "") && \
 		git checkout --orphan gh-pages && \
