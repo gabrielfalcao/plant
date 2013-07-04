@@ -22,7 +22,7 @@ docstests: clean
 	@steadymark README.md
 	@steadymark spec/*.md
 
-docs: doctests
+docs: docstests
 	@git co master && \
 		(git br -D gh-pages || printf "") && \
 		git checkout --orphan gh-pages && \
