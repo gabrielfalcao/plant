@@ -17,8 +17,8 @@
     <![endif]-->
   </head>
 {% macro render_menu_item(index, header, child=False) -%}
-    <li class="{% if child %}sub{% endif %}">
-      <a href="{{ header.anchor }}">
+    <li id="toc-item-{{ header.anchor.strip("#") }}" class="{% if child %} sub {% endif %}{% if not child and index == "1" %} active {% endif %}">
+      <a class="toc-link" href="{{ header.anchor }}">
          <span class="index">{{ index }} </span>
          {{ header.text|safe }}
       </a>
@@ -85,5 +85,7 @@
       <div id="forkme">
         <a href="{{ project.github_url }}">&hearts; Github</a>
       </div>
+      <script type="text/javascript" src="{{ static_file('js/jquery.js') }}"></script>
+      <script type="text/javascript" src="{{ static_file('js/theme.js') }}"></script>
   </body>
 </html>
