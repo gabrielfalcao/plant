@@ -31,3 +31,7 @@ might be really long.
 >>> unit_test_folder
 <plant.Node (path=tests/unit)>
 ```
+
+## What next ?
+
+Learn how to [traverse paths](traversing-paths.md), [find files](find-files.md) or do [string operations](string-operations.md) on paths.
