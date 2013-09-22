@@ -1,7 +1,7 @@
 # Plant - filesystem for humans
 
 [![Build Status](https://secure.travis-ci.org/gabrielfalcao/plant.png?branch=master)](http://travis-ci.org/#!/gabrielfalcao/plant)
-
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/gabrielfalcao/plant/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 [github page](https://github.com/gabrielfalcao/plant)
 
 ## Introduction
