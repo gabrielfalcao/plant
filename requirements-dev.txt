@@ -22,3 +22,4 @@ sure==1.1.7
 tox==1.4.2
 virtualenv==1.9.1
 Werkzeug==0.9.1
+rednose==0.3
