@@ -40,6 +40,9 @@ clean:
 
 release: test
 	@./.release
+	@make publish
+
+publish:
 	@python setup.py sdist register upload
 
 prepare:

@@ -18,7 +18,11 @@
 from __future__ import unicode_literals
 
 import os
-from setuptools import setup
+from setuptools import setup, find_packages
+
+LOCAL_PATH = os.path.abspath(os.path.join(__file__, os.pardir))
+
+
 
 
 def get_packages():
@@ -32,9 +36,9 @@ def get_packages():
 
 
 setup(name='plant',
-    version='0.1.0',
+    version='0.1.1',
     description=('Filesystem for humans'),
     author='Gabriel Falcao',
     author_email='gabriel@nacaolivre.org',
     url='http://github.com/gabrielfalcao/plant',
-    packages=get_packages())
+    packages=find_packages(LOCAL_PATH, ('tests')))
