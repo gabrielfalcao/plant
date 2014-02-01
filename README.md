@@ -74,18 +74,4 @@ True
 <plant.Node (path=tests/functional)>
 ```
 
-#### Handy way to get to a directory from a file
-
-`.dir` is a safe way to be in the current working directory
-
-```python
->>> from plant import Node
->>>
->>> unit_test_file = Node("tests/unit/test_base.py")
->>> unit_test_file.dir
-<plant.Node (path=tests/unit)>
->>> unit_test_file.dir.dir
-<plant.Node (path=tests/unit)>
->>> unit_test_file.dir.dir.dir
-<plant.Node (path=tests/unit)>
-```
+[Read the full documentation here](http://falcao.it/plant)
