@@ -15,7 +15,6 @@ py==1.4.15
 Pygments==1.6
 python-termstyle==0.1.9
 PyYAML==3.10
-rednose==0.3
 speakers==0.0.3
 steadymark==0.4.5
 sure==1.1.7
