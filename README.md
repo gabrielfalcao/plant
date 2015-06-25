@@ -74,4 +74,17 @@ True
 <plant.Node (path=tests/functional)>
 ```
 
+
+### Access the unix stat attributes through metadata
+
+```python
+>>> from plant import Node
+>>>
+>>> test_fs = Node("tests/functional/test_fs.py")
+>>> test_fs.metadata.size
+3957
+>>> test_fs.metadata.keys()
+[u'uid', u'dev', u'ctime', u'nlink', u'gid', u'mode', u'mtime', u'atime', u'ino', u'size']
+```
+
 [Read the full documentation here](http://falcao.it/plant)
