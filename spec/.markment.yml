@@ -1,6 +1,6 @@
 project:
   name: "Plant"
-  version: 0.1.1
+  version: 0.1.2
   description: python requests for filesystem
   github_maintainer: gabrielfalcao
   github_maintainer_name: Gabriel Falc&atilde;o

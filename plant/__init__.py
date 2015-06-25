@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from __future__ import unicode_literals
 
-version = __version__ = '0.1.1'
+version = __version__ = '0.1.2'
 
 import io
 import os

@@ -36,7 +36,7 @@ def get_packages():
 
 
 setup(name='plant',
-    version='0.1.1',
+    version='0.1.2',
     description=('Filesystem for humans'),
     author='Gabriel Falcao',
     author_email='gabriel@nacaolivre.org',
