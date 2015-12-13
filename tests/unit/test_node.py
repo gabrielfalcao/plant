@@ -29,7 +29,7 @@ def test_open(io):
     nd = Node('/foo/bar')
 
     nd.open('wee.py').should.equal('an open file')
-    io.open.assert_once_called_with('/foo/bar/wee.py')
+    io.open.assert_called_once_with('/foo/bar/wee.py')
 
 
 @patch('plant.exists')
@@ -88,7 +88,7 @@ def test_glob_filters_results_from_walk_using_fnmatch(exists):
         Node("/foo/wisdom/aaa.py"),
         Node("/foo/wisdom/ddd.py"),
     ])
-    nd.walk.assert_once_called_with(lazy='passed-to-walk')
+    nd.walk.assert_called_once_with(lazy='passed-to-walk')
 
 
 @patch('plant.exists')
@@ -108,7 +108,7 @@ def test_glob_filters_results_from_walk_using_fnmatch_nonlazy(exists):
         Node("/foo/wisdom/aaa.py"),
         Node("/foo/wisdom/ddd.py"),
     ])
-    nd.walk.assert_once_called_with(lazy=False)
+    nd.walk.assert_called_once_with(lazy=False)
 
 
 @patch('plant.exists')
@@ -128,7 +128,7 @@ def test_find_with_regex_filters_results_from_walk_using_regex(exists):
         Node("/foo/wisdom/bbb.txt"),
         Node("/foo/wisdom/ccc.php"),
     ])
-    nd.walk.assert_once_called_with(lazy='passed-to-walk')
+    nd.walk.assert_called_once_with(lazy='passed-to-walk')
 
 
 @patch('plant.exists')
@@ -148,7 +148,7 @@ def test_find_with_regex_filters_results_from_walk_using_regex_nonlazy(exists):
         Node("/foo/wisdom/bbb.txt"),
         Node("/foo/wisdom/ccc.php"),
     ])
-    nd.walk.assert_once_called_with(lazy=False)
+    nd.walk.assert_called_once_with(lazy=False)
 
 
 @patch('plant.exists')
@@ -165,7 +165,7 @@ def test_find_find_with_regexs_and_get_the_first_one(exists):
     ret = nd.find('[.]\w{3}$')
     ret.should.be.a(Node)
     ret.should.equal(Node("/foo/wisdom/bbb.txt"))
-    nd.walk.assert_once_called_with(lazy=True)
+    nd.walk.assert_called_once_with(lazy=True)
 
 
 @patch('plant.exists')
@@ -181,7 +181,7 @@ def test_find_find_with_regexs_and_get_the_first_one_none(exists):
     ]
     ret = nd.find('^$')
     ret.should.be.none
-    nd.walk.assert_once_called_with(lazy=True)
+    nd.walk.assert_called_once_with(lazy=True)
 
 
 @patch('plant.exists')
@@ -305,16 +305,21 @@ def test_node_basename():
     nd.basename.should.equal('test_node.py')
 
 
+@patch('plant.dirname')
+@patch('plant.isdir')
 @patch('plant.os')
-def test_node_list(os):
+def test_node_list(os, isdir, dirname):
     ("Node#list should return a list containing one node "
      "per file found inside of the current node")
+
+    dirname.return_value = '/foo/bar/items'
+    isdir.return_value = False
     os.listdir.return_value = ['/foo/bar/items/whatever.py']
 
     nd = Node('/foo/bar/items/')
     nd.list().should.have.length_of(1)
 
-    os.listdir.assert_once_called_with('/foo/bar/items')
+    os.listdir.assert_called_once_with('/foo/bar/items')
 
 
 def test_node_dir_when_is_file():
@@ -337,7 +342,7 @@ def test_node_dir_when_is_dir():
 def test_isfile_if_path_exists(isfile_base):
     ('fs.isfile returns result from os.path.isfile if path exists')
     isfile('foobar', True).should.equal(isfile_base.return_value)
-    isfile_base.assert_once_called_with('foobar')
+    isfile_base.assert_called_once_with('foobar')
 
 
 @patch('plant.isfile_base')
@@ -358,7 +363,7 @@ def test_isfile_if_path_doesnt_exists_and_hasnt_a_dot(isfile_base):
 def test_isdir_if_path_exists(isdir_base):
     ('fs.isdir returns result from os.path.isdir if path exists')
     isdir('foobar', True).should.equal(isdir_base.return_value)
-    isdir_base.assert_once_called_with('foobar')
+    isdir_base.assert_called_once_with('foobar')
 
 
 @patch('plant.isdir_base')
