@@ -1,6 +1,11 @@
 language: python
+sudo: false
+
 python:
   - "2.7"
+
+env:
+  - PYTHONDONTWRITEBYTECODE=x
 
 install:
   - pip install -r development.txt
