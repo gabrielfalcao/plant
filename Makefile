@@ -2,7 +2,8 @@ all: test
 
 filename=plant-`python -c 'import plant.version;print plant.version.version'`.tar.gz
 
-export PYTHONPATH:=  ${PWD}
+export PYTHONPATH:=${PWD}
+export PYTHONDONTWRITEBYTECODE:=x
 
 test: clean unit functional docstests
 
