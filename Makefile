@@ -1,5 +1,14 @@
 all: test
 
+
+ifeq ($(OSNAME), Linux)
+OPEN_COMMAND		:= gnome-open
+OSDEPS			:= sudo apt-get update && sudo apt-get -y install libssl-dev python-dev libgnutls28-dev libtool  build-essential file libmysqlclient-dev libffi-dev libev-dev libevent-dev libxml2-dev libxslt1-dev libnacl-dev redis-tools vim htop aptitude lxc-docker-1.9.1 figlet supervisor virtualenvwrapper
+else
+OPEN_COMMAND		:= open
+OSDEPS			:= brew install redis libevent libev
+endif
+
 filename=plant-`python -c 'import plant.version;print plant.version.version'`.tar.gz
 
 export PYTHONPATH:=${PWD}
@@ -24,15 +33,8 @@ docstests: clean
 	@steadymark spec/*.md
 
 docs: docstests
-	@markment -o . -t .theme --sitemap-for="http://falcao.it/plant" spec
-	@git co master && \
-		(git br -D gh-pages || printf "") && \
-		git checkout --orphan gh-pages && \
-		markment -o . -t .theme --sitemap-for="http://falcao.it/plant" spec && \
-		git add . && \
-		git commit -am 'documentation' && \
-		git push --force origin gh-pages && \
-		git checkout master
+	cd docs && make html
+	$(OPEN_COMMAND) docs/build/html/index.html
 
 clean:
 	@printf "Cleaning up files that are already in .gitignore... "
