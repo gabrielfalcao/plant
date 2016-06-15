@@ -1,7 +1,7 @@
 # Plant - filesystem for humans
 
 [![Build Status](https://secure.travis-ci.org/gabrielfalcao/plant.png?branch=master)](http://travis-ci.org/#!/gabrielfalcao/plant)
-[![Documentation Status](https://readthedocs.org/projects/plant-fs/badge/?version=latest)](http://plant-fs.readthedocs.org/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/plant-fs/badge/?version=latest)](https://plant-fs.readthedocs.io/en/latest/?badge=latest)
 
 [github page](https://github.com/gabrielfalcao/plant)
 
