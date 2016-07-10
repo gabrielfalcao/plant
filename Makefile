@@ -28,11 +28,7 @@ functional:
 
 unit: clean
 
-docstests: clean
-	@steadymark README.md
-	@steadymark spec/*.md
-
-docs: docstests
+docs:
 	cd docs && make html
 	$(OPEN_COMMAND) docs/build/html/index.html
 
