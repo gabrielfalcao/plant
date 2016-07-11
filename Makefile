@@ -14,7 +14,7 @@ filename=plant-`python -c 'import plant.version;print plant.version.version'`.ta
 export PYTHONPATH:=${PWD}
 export PYTHONDONTWRITEBYTECODE:=x
 
-test: clean unit functional docstests
+test: clean unit functional
 
 test-kind:
 	@echo "Running unit tests"
