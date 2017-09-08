@@ -26,7 +26,10 @@ from setuptools import setup, find_packages
 
 def local_file(*f):
     path = os.path.join(os.path.dirname(__file__), *f)
-    return codecs.open(path, 'r', encoding='utf-8').read().encode('utf-8')
+    if os.path.isfile(path):
+        return codecs.open(path, 'r', encoding='utf-8').read().encode('utf-8')
+
+    return path
 
 
 class VersionFinder(ast.NodeVisitor):
@@ -45,7 +48,7 @@ class VersionFinder(ast.NodeVisitor):
 
 def read_version():
     finder = VersionFinder()
-    finder.visit(ast.parse(local_file('plural', 'version.py')))
+    finder.visit(ast.parse(local_file('plant', 'version.py')))
     return finder.version
 
 
@@ -58,4 +61,5 @@ setup(name='plant',
       author='Gabriel Falcao',
       author_email='gabriel@nacaolivre.org',
       url='http://github.com/gabrielfalcao/plant',
-      packages=find_packages(local_file('tests')))
+      packages=find_packages(exclude=['*tests*']),
+)
