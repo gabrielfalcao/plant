@@ -29,4 +29,4 @@ node shows the relative path since the absolute might be really long.
     >>>
     >>> unit_test_folder = Node("tests/unit")
     >>> unit_test_folder
-    <plant.Node (path=tests/unit)>
+    Node(path='tests/unit')

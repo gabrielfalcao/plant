@@ -11,7 +11,7 @@ Notice that it is recursive
     >>>
     >>> test_files = Node("tests").find_with_regex("test_.*.py")
     >>> test_files
-    [<plant.Node (path=tests/functional/test_fs.py)>, <plant.Node (path=tests/unit/test_base.py)>, <plant.Node (path=tests/unit/test_node.py)>]
+    [Node('tests/functional/test_fs.py'), Node('tests/unit/test_base.py'), Node('tests/unit/test_node.py')]
 
 Finding only the first occurrence
 =================================
@@ -24,4 +24,4 @@ Very handy for finding one file at a time
     >>>
     >>> found = Node("tests").find("test_base.py")
     >>> found
-    <plant.Node (path=tests/unit/test_base.py)>
+    Node('tests/unit/test_base.py')

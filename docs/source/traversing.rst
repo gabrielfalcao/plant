@@ -16,11 +16,11 @@ directory.
     >>> functional_test_file.is_file
     True
     >>> functional_test_file.parent
-    <plant.Node (path=tests/functional)>
+    Node('tests/functional')
     >>> functional_test_file.parent.parent
-    <plant.Node (path=tests)>
+    Node('tests')
     >>> functional_test_file.dir
-    <plant.Node (path=tests/functional)>
+    Node('tests/functional')
 
 Handy way to get to a directory from a file
 -------------------------------------------
@@ -33,8 +33,8 @@ Handy way to get to a directory from a file
     >>>
     >>> unit_test_file = Node("tests/unit/test_base.py")
     >>> unit_test_file.dir
-    <plant.Node (path=tests/unit)>
+    Node('tests/unit')
     >>> unit_test_file.dir.dir
-    <plant.Node (path=tests/unit)>
+    Node('tests/unit')
     >>> unit_test_file.dir.dir.dir
-    <plant.Node (path=tests/unit)>
+    Node('tests/unit')

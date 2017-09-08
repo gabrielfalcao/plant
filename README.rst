@@ -34,7 +34,7 @@ Plant always has the absolute path of the current node.
     >>>
     >>> unit_test_folder = Node("tests/unit")
     >>> unit_test_folder
-    <plant.Node (path=tests/unit)>
+    Node('tests/unit')
 
 Getting the parent node
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -45,7 +45,7 @@ Getting the parent node
     >>>
     >>> unit_test_folder = Node("tests/unit")
     >>> unit_test_folder.parent.parent
-    <plant.Node (path=.)>
+    Node('.')
 
 Finding files by regex
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -56,7 +56,7 @@ Finding files by regex
     >>>
     >>> test_files = Node("tests").find_with_regex("test_.*.py")
     >>> test_files
-    [<plant.Node (path=tests/functional/test_fs.py)>, <plant.Node (path=tests/unit/test_base.py)>, <plant.Node (path=tests/unit/test_node.py)>]
+    [Node('tests/functional/test_fs.py'), Node('tests/unit/test_base.py'), Node('tests/unit/test_node.py')]
 
 Every node is a file
 ~~~~~~~~~~~~~~~~~~~~
@@ -74,11 +74,11 @@ directory.
     >>> functional_test_file.is_file
     True
     >>> functional_test_file.parent
-    <plant.Node (path=tests/functional)>
+    Node('tests/functional')
     >>> functional_test_file.parent.parent
-    <plant.Node (path=tests)>
+    Node('tests')
     >>> functional_test_file.dir
-    <plant.Node (path=tests/functional)>
+    Node('tests/functional')
 
 Access the unix stat attributes through metadata
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
