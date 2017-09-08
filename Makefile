@@ -17,8 +17,8 @@ export PYTHONDONTWRITEBYTECODE:=x
 test: clean unit functional
 
 test-kind:
-	@echo "Running unit tests"
-	@nosetests --cover-branches --rednose --with-coverage  --cover-erase --cover-package=plant --stop -v -s tests/$(kind)
+	@echo "Running $(kind) tests"
+	@nosetests tests/$(kind)
 
 unit:
 	@make test-kind kind=unit
