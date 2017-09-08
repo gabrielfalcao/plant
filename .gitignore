@@ -5,3 +5,4 @@ _html
 _public/
 plant.egg-info
 docs/build/
+build/
