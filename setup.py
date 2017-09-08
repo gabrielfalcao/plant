@@ -17,28 +17,45 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from __future__ import unicode_literals
 
+import ast
+import codecs
 import os
+
 from setuptools import setup, find_packages
 
-LOCAL_PATH = os.path.abspath(os.path.join(__file__, os.pardir))
+
+def local_file(*f):
+    path = os.path.join(os.path.dirname(__file__), *f)
+    return codecs.open(path, 'r', encoding='utf-8').read().encode('utf-8')
 
 
+class VersionFinder(ast.NodeVisitor):
+    VARIABLE_NAME = 'version'
+
+    def __init__(self):
+        self.version = None
+
+    def visit_Assign(self, node):
+        try:
+            if node.targets[0].id == self.VARIABLE_NAME:
+                self.version = node.value.s
+        except:
+            pass
 
 
-def get_packages():
-    # setuptools can't do the job :(
-    packages = []
-    for root, dirnames, filenames in os.walk('plant'):
-        if '__init__.py' in filenames:
-            packages.append(".".join(os.path.split(root)).strip("."))
+def read_version():
+    finder = VersionFinder()
+    finder.visit(ast.parse(local_file('plural', 'version.py')))
+    return finder.version
 
-    return packages
+
+# install_requires = list(filter(bool, map(bytes.strip, local_file('requirements.txt').splitlines())))
 
 
 setup(name='plant',
-    version='0.1.2',
-    description=('Filesystem for humans'),
-    author='Gabriel Falcao',
-    author_email='gabriel@nacaolivre.org',
-    url='http://github.com/gabrielfalcao/plant',
-    packages=find_packages(LOCAL_PATH, ('tests')))
+      version=read_version(),
+      description=('Filesystem for humans'),
+      author='Gabriel Falcao',
+      author_email='gabriel@nacaolivre.org',
+      url='http://github.com/gabrielfalcao/plant',
+      packages=find_packages(local_file('tests')))

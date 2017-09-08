@@ -18,10 +18,10 @@
 from __future__ import unicode_literals
 
 from mock import Mock, patch, call
-from plant import Node, isfile, isdir, DotDict
+from plant.core import Node, isfile, isdir, DotDict
 
 
-@patch('plant.io')
+@patch('plant.core.io')
 def test_open(io):
     ("Node#open should return an open file")
     io.open.return_value = 'an open file'
@@ -32,7 +32,7 @@ def test_open(io):
     io.open.assert_called_once_with('/foo/bar/wee.py')
 
 
-@patch('plant.exists')
+@patch('plant.core.exists')
 def test_node_path_to_related(exists):
     ("Node#path_to_related takes a path and returns the relative way there")
     nd = Node("/foo/bar/something.py")
@@ -40,7 +40,7 @@ def test_node_path_to_related(exists):
     result.should.equal('../../bar/something.py')
 
 
-@patch('plant.exists')
+@patch('plant.core.exists')
 def test_cd_enters_a_path_and_returns_a_node_representing_it(exists):
     ("Node#cd should return a node representing the given path")
     nd = Node("/foo/bar/")
@@ -48,7 +48,7 @@ def test_cd_enters_a_path_and_returns_a_node_representing_it(exists):
     other.path.should.equal('/foo/bar/awesome')
 
 
-@patch('plant.exists')
+@patch('plant.core.exists')
 def test_cd_enters_a_path_and_returns_a_node_representing_it_abs(exists):
     ("Node#cd should return a node representing the given path. "
      "Testing with absolute path")
@@ -58,7 +58,7 @@ def test_cd_enters_a_path_and_returns_a_node_representing_it_abs(exists):
     other.path.should.equal('/etc')
 
 
-@patch('plant.exists')
+@patch('plant.core.exists')
 def test_contains_checks_if_path_exists(exists):
     ("Node#cd should return a node representing the given path.")
 
@@ -71,7 +71,7 @@ def test_contains_checks_if_path_exists(exists):
     exists.call_count.should.equal(1)
 
 
-@patch('plant.exists')
+@patch('plant.core.exists')
 def test_glob_filters_results_from_walk_using_fnmatch(exists):
     ('Node#glob returns a lazy list of nodes')
     nd = Node('/foo/bar')
@@ -91,7 +91,7 @@ def test_glob_filters_results_from_walk_using_fnmatch(exists):
     nd.walk.assert_called_once_with(lazy='passed-to-walk')
 
 
-@patch('plant.exists')
+@patch('plant.core.exists')
 def test_glob_filters_results_from_walk_using_fnmatch_nonlazy(exists):
     ('Node#glob returns an evaluated list of nodes')
     nd = Node('/foo/bar')
@@ -111,7 +111,7 @@ def test_glob_filters_results_from_walk_using_fnmatch_nonlazy(exists):
     nd.walk.assert_called_once_with(lazy=False)
 
 
-@patch('plant.exists')
+@patch('plant.core.exists')
 def test_find_with_regex_filters_results_from_walk_using_regex(exists):
     ('Node#find_with_regex returns a lazy list of nodes')
     nd = Node('/foo/bar')
@@ -131,7 +131,7 @@ def test_find_with_regex_filters_results_from_walk_using_regex(exists):
     nd.walk.assert_called_once_with(lazy='passed-to-walk')
 
 
-@patch('plant.exists')
+@patch('plant.core.exists')
 def test_find_with_regex_filters_results_from_walk_using_regex_nonlazy(exists):
     ('Node#find_with_regex returns an evaluated list of nodes')
     nd = Node('/foo/bar')
@@ -151,7 +151,7 @@ def test_find_with_regex_filters_results_from_walk_using_regex_nonlazy(exists):
     nd.walk.assert_called_once_with(lazy=False)
 
 
-@patch('plant.exists')
+@patch('plant.core.exists')
 def test_find_find_with_regexs_and_get_the_first_one(exists):
     ('Node#find returns the first result from find_with_regex when found')
     nd = Node('/foo/bar')
@@ -168,7 +168,7 @@ def test_find_find_with_regexs_and_get_the_first_one(exists):
     nd.walk.assert_called_once_with(lazy=True)
 
 
-@patch('plant.exists')
+@patch('plant.core.exists')
 def test_find_find_with_regexs_and_get_the_first_one_none(exists):
     ('Node#find returns the None if nothing is found')
     nd = Node('/foo/bar')
@@ -184,7 +184,7 @@ def test_find_find_with_regexs_and_get_the_first_one_none(exists):
     nd.walk.assert_called_once_with(lazy=True)
 
 
-@patch('plant.exists')
+@patch('plant.core.exists')
 def test_node_could_be_updated_by_true(exists):
     ("Node#could_be_updated_by returns True if given "
      "node has a newer modification time")
@@ -196,7 +196,7 @@ def test_node_could_be_updated_by_true(exists):
     nd.could_be_updated_by(other).should.be.true
 
 
-@patch('plant.exists')
+@patch('plant.core.exists')
 def test_node_could_be_updated_by_false(exists):
     ("Node#could_be_updated_by returns False if given "
      "node has an older modification time")
@@ -208,7 +208,7 @@ def test_node_could_be_updated_by_false(exists):
     nd.could_be_updated_by(other).should.be.false
 
 
-@patch('plant.exists')
+@patch('plant.core.exists')
 def test_node_relative(exists):
     ("Node#relative() returns a path relative to the base")
 
@@ -216,7 +216,7 @@ def test_node_relative(exists):
     nd.relative('/foo/bar/yes.py').should.equal('yes.py')
 
 
-@patch('plant.os')
+@patch('plant.core.os')
 def test_trip_at_when_lazy_absolute(os):
     ("Node#trip_at(path, lazy=True) returns a generator when lazy=True "
      "(testing with absolute path)")
@@ -232,7 +232,7 @@ def test_trip_at_when_lazy_absolute(os):
     ])
 
 
-@patch('plant.os')
+@patch('plant.core.os')
 def test_trip_at_when_not_lazy_absolute(os):
     ("Node#trip_at(path, lazy=False) returns a list when lazy=False "
      "(testing with absolute path)")
@@ -247,7 +247,7 @@ def test_trip_at_when_not_lazy_absolute(os):
     ])
 
 
-@patch('plant.os')
+@patch('plant.core.os')
 def test_trip_at_when_lazy_relative(os):
     ("Node#trip_at(path, lazy=True) returns a generator when lazy=True "
      "(testing with relative path)")
@@ -263,7 +263,7 @@ def test_trip_at_when_lazy_relative(os):
     ])
 
 
-@patch('plant.os')
+@patch('plant.core.os')
 def test_trip_at_when_not_lazy_relative(os):
     ("Node#trip_at(path, lazy=False) returns a list when lazy=False "
      "(testing with relative path)")
@@ -305,9 +305,9 @@ def test_node_basename():
     nd.basename.should.equal('test_node.py')
 
 
-@patch('plant.dirname')
-@patch('plant.isdir')
-@patch('plant.os')
+@patch('plant.core.dirname')
+@patch('plant.core.isdir')
+@patch('plant.core.os')
 def test_node_list(os, isdir, dirname):
     ("Node#list should return a list containing one node "
      "per file found inside of the current node")
@@ -338,49 +338,49 @@ def test_node_dir_when_is_dir():
     nd.dir.path.should.equal('/foo/bar/items')
 
 
-@patch('plant.isfile_base')
+@patch('plant.core.isfile_base')
 def test_isfile_if_path_exists(isfile_base):
     ('fs.isfile returns result from os.path.isfile if path exists')
     isfile('foobar', True).should.equal(isfile_base.return_value)
     isfile_base.assert_called_once_with('foobar')
 
 
-@patch('plant.isfile_base')
+@patch('plant.core.isfile_base')
 def test_isfile_if_path_doesnt_exists_and_has_dot(isfile_base):
     ('fs.isfile returns result from os.path.isfile if path doesnt '
      'exist and name has a dot')
     isfile('foobar.py', False).should.equal(True)
 
 
-@patch('plant.isfile_base')
+@patch('plant.core.isfile_base')
 def test_isfile_if_path_doesnt_exists_and_hasnt_a_dot(isfile_base):
     ('fs.isfile returns result from os.path.isfile if path doesnt '
      'exist and name doesnt have not a dot')
     isfile('foobar', False).should.equal(False)
 
 
-@patch('plant.isdir_base')
+@patch('plant.core.isdir_base')
 def test_isdir_if_path_exists(isdir_base):
     ('fs.isdir returns result from os.path.isdir if path exists')
     isdir('foobar', True).should.equal(isdir_base.return_value)
     isdir_base.assert_called_once_with('foobar')
 
 
-@patch('plant.isdir_base')
+@patch('plant.core.isdir_base')
 def test_isdir_if_path_doesnt_exists_and_has_dot(isdir_base):
     ('fs.isdir returns result from os.path.isdir if path doesnt '
      'exist and have not a dot')
     isdir('foobar.py', False).should.equal(False)
 
 
-@patch('plant.isdir_base')
+@patch('plant.core.isdir_base')
 def test_isdir_if_path_doesnt_exists_and_hasnt_a_dot(isdir_base):
     ('fs.isdir returns result from os.path.isdir if path doesnt '
      'exist and name doesnt have a dot')
     isdir('foobar', False).should.equal(True)
 
 
-@patch('plant.isfile')
+@patch('plant.core.isfile')
 def test_node_depth_of_with_file(isfile):
     ("Node#depth_of(path) should return the approriate number")
 
@@ -390,7 +390,7 @@ def test_node_depth_of_with_file(isfile):
     Node("/foo/bar//").depth_of("/foo/bar/another/dir/file.py").should.equal(2)
 
 
-@patch('plant.isfile')
+@patch('plant.core.isfile')
 def test_node_depth_of_with_dir(isfile):
     ("Node#depth_of(path) should return the approriate number")
 

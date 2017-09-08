@@ -19,5 +19,13 @@ from __future__ import unicode_literals
 import re
 
 
-def slugify(text):
-    return re.sub(r'\W', '-', text.strip().lower())
+def slugify(text, repchar='-'):
+    """takes a string and replaces all non-alphanumeric characters with
+    the given ``repchar``.
+
+    :param text: the string to be slugified
+    :param repchar: defaults to ``-``, the replacement char
+    :returns: :py:`bytes`
+    """
+
+    return re.sub(r'\W+', repchar, text.strip().lower())

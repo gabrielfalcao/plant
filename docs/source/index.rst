@@ -15,6 +15,7 @@ Contents:
    traversing
    find-files
    string-operations
+   api
 
 
 Indices and tables

@@ -42,7 +42,12 @@ release: test
 	@make publish
 
 publish:
-	@python setup.py sdist register upload
+	@rm -rf build
+	@python setup.py build sdist
+	@twine upload dist/*.tar.gz
 
 prepare:
 	@mkdir -p output
+
+
+.PHONY: docs

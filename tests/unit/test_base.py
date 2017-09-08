@@ -18,12 +18,12 @@
 from __future__ import unicode_literals
 
 from mock import patch
-from plant import isfile, isdir
+from plant.core import isfile, isdir
 
 
-@patch('plant.isdir_base')
+@patch('plant.core.isdir_base')
 def test_isdir_when_exists(isdir_base):
-    ("plant.isdir should return os.path.isdir when given path exists")
+    ("plant.core.isdir should return os.path.isdir when given path exists")
 
     isdir_base.return_value = "yeah!"
     isdir("/foo", True).should.equal("yeah!")
@@ -31,9 +31,9 @@ def test_isdir_when_exists(isdir_base):
     isdir_base.assert_called_once_with("/foo")
 
 
-@patch('plant.isfile_base')
+@patch('plant.core.isfile_base')
 def test_isfile_when_exists(isfile_base):
-    ("plant.isfile should return os.path.isfile when given path exists")
+    ("plant.core.isfile should return os.path.isfile when given path exists")
 
     isfile_base.return_value = "yeah!"
     isfile("/foo", True).should.equal("yeah!")
