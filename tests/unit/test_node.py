@@ -31,6 +31,26 @@ def test_open(io):
     nd.open('wee.py').should.equal('an open file')
     io.open.assert_called_once_with('/foo/bar/wee.py')
 
+@patch('plant.core.io')
+def test_open_dir_with_default_path(io):
+    ("Node#open should raise error when called with default path on a dir")
+    io.open.return_value = 'an open file'
+
+    nd = Node('/foo/bar')
+
+    nd.open.when.called_with().should.throw(TypeError)
+    io.open.assert_not_called()
+
+@patch('plant.core.io')
+def test_open_file_with_default_path(io):
+    ("Node#open should default to self.path when called with default path on a file")
+    io.open.return_value = 'an open file'
+
+    nd = Node('/foo/bar.py')
+    nd.open.when.called_with().should.have.returned_the_value('an open file')
+
+    io.open.assert_called_once_with('/foo/bar.py')
+
 
 @patch('plant.core.exists')
 def test_node_path_to_related(exists):

@@ -519,7 +519,7 @@ class Node(object):
         """
         return abspath(join(self.path, *path))
 
-    def open(self, path, *args, **kw):
+    def open(self, path=None, *args, **kw):
         """performs an :py:func:`io.open` on the given relative path to the current node.
 
         ::
@@ -539,6 +539,10 @@ class Node(object):
         :param ``*kw``: passed onto :py:func:`io.open`
         :returns: :py:class:`io.FileIO`
         """
+        if path is None and self.is_file:
+            path = ''
+        elif path is None:
+            raise TypeError('open() missing 1 required argument: path')
         return io.open(self.join(path), *args, **kw)
 
     def __repr__(self):
